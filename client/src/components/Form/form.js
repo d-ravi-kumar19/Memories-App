@@ -13,7 +13,7 @@ const Form = ({ currentId, setCurrentId }) => {
   const classes = useStyles();
   const [postData, setPostData] = useState({creator: '', title:'', message : '', tags: '', selectedFile: ''});  // creating empty post data
   const dispatch = useDispatch();
-  const post = useSelector((state) => currentId ? state.posts.postMessages.find((p) => p._id === currentId) : null)
+  const post = useSelector((state) => currentId ? state.posts.find((p) => p._id === currentId) : null)
 
   useEffect(() =>{
     if(post){

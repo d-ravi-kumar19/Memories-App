@@ -2,7 +2,7 @@
 
 import React from "react";
 import { Provider } from 'react-redux';       // to provide store to root
-import { createRoot } from "react-dom/client";      
+import { createRoot} from "react-dom/client";      
 import { legacy_createStore as createStore, applyMiddleware, compose } from 'redux';
 import {thunk} from 'redux-thunk';     
 import reducers from "./reducers";    // importing all reducers

@@ -11,12 +11,12 @@ import { useDispatch } from "react-redux";
 
 const App = () => {
   const [currentId, setCurrentId] = useState(0);
-  const classes = useStyles(); 
-  const dispatch = useDispatch(); 
+  const classes = useStyles();
+  const dispatch = useDispatch();
 
-  useEffect(() => { 
+  useEffect(() => {
     dispatch(getPosts());
-  }, [currentId,dispatch]);   
+  }, [currentId,dispatch]);
 
   return (
     <Container maxWidth="lg">
@@ -30,7 +30,7 @@ const App = () => {
       </AppBar>
       <Grow in>
         <Container>
-          <Grid className={classes.mainContainer} container justifyContent="space-between" alignItems="stretch" spacing={4}>
+          <Grid container justifyContent="space-between" alignItems="stretch" spacing={4}>
             <Grid item xs={12} sm={7}>
               <Posts setCurrentId ={ setCurrentId} /> 
             </Grid>

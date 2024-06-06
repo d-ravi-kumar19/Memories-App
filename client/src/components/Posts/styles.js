@@ -1,6 +1,6 @@
 // src/components/Posts/styles.js
 
-import { makeStyles } from "@mui/styles";
+import { makeStyles } from '@mui/styles';
 
 export default makeStyles((theme) => ({
   mainContainer: {
@@ -8,7 +8,7 @@ export default makeStyles((theme) => ({
     alignItems: 'center',
   },
   smMargin: {
-    margin: theme.spacing(1),
+    margin: "2px"
   },
   actionDiv: {
     textAlign: 'center',

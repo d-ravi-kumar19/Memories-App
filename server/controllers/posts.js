@@ -1,5 +1,8 @@
 import mongoose from "mongoose";
 import PostMessage from "../models/postMessage.js";
+import express from 'express';
+
+const router = express.Router();
 
 export const getPosts = async (req, res) => {
   try {
@@ -7,7 +10,7 @@ export const getPosts = async (req, res) => {
     // console.log(postMessages[0].title); //log to print first post title
     // console.log(`Posts fetched successfully at ${new Date().toLocaleString()}`);
 
-    res.status(200).json({ postMessages });
+    res.status(200).json( postMessages );
   } catch (error) {
     console.error(
       `Error fetching posts at ${new Date().toLocaleString()}: ${error.message}`
@@ -17,8 +20,9 @@ export const getPosts = async (req, res) => {
 };
 
 export const createPost = async (req, res) => {
-  const post = req.body; // body contains {creator, title, meassage, tags, selectedFile} from frontend
-  const newPost = new PostMessage(post); // db post instance created with post inputs
+  const { title, message, selectedFile, creator, tags } = req.body;
+
+  const newPost = new PostMessage({ title, message, selectedFile, creator, tags })
   try {
     // save the newpost in db 
     await newPost.save();
@@ -54,7 +58,6 @@ export const updatePost = async (req, res) => {
 
 export const deletePost = async (req, res) => {
   const { id } = req.params; // get from req url (/posts/:id)
-  console.log(id);
   if (!mongoose.Types.ObjectId.isValid(id))
     // check if id or not valid
     res.status(404).send(`Oops! Post not found with ${id}`);
@@ -75,3 +78,5 @@ export const likePost = async (req, res) => {
   
   res.json(updatedPost);
 }
+
+export default router;

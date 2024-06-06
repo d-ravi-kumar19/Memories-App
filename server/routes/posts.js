@@ -10,7 +10,7 @@ router.get('/',getPosts);       // to fetch posts from db
 router.post('/',createPost);       // creates post in db
 router.patch('/:id',updatePost)     // updates post in db
 router.delete('/:id',deletePost)     // deletes post from db
-router.patch('/:id/likePost', likePost);
+router.patch('/:id/likePost', likePost); 
 
 
 export default router;
