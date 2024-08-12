@@ -1,21 +1,26 @@
 import mongoose from "mongoose";
 
-// defining schema for db
 const postSchema = mongoose.Schema({
-  title: String,
-  message: String,
-  creator: String,
-  tags: [String],
-  likeCount: {
-    type: Number,
-    default: 0,
-  },
-  createdAt: {
-    type: Date,
-    default: new Date(),
-  },
-  selectedFile: String, // contains base64 of image
+    title: String,
+    message: String,
+    name: String,
+    creator: String,
+    tags: [String],
+    selectedFile: String,   // the image will be converted to a string using base64
+    likes: {
+        type: [String],
+        default: []
+    },
+    comments: {
+        type: [String],
+        default:  []
+    },
+    createdAt: {
+        type: Date,
+        default: new Date()
+    }
 });
 
-const PostMessage = mongoose.model("PostMessage", postSchema); // model creates with name PostMessage (check db)
+const PostMessage = mongoose.model('PostMessage', postSchema);
+
 export default PostMessage;

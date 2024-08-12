@@ -14,6 +14,7 @@ export default makeStyles({
   },
   fullHeightCard: {
     height: '100%',
+    // padding:'80%',
   },
   card: {
     display: 'flex',
@@ -21,6 +22,7 @@ export default makeStyles({
     justifyContent: 'space-between',
     borderRadius: '15px',
     height: '100%',
+    
     position: 'relative',
   },
   overlay: {

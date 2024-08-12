@@ -1,46 +1,30 @@
 // src/App.js
 
-import React, { useEffect, useState } from "react";
-import { AppBar, Container, Grid, Grow, Typography,Box } from "@mui/material";
-import Posts from "./components/Posts/posts";
-import Form from "./components/Form/form";
-import memories from "./components/images/memories.png";
-import useStyles from "./styles";
-import { getPosts } from "./actions/posts";
-import { useDispatch } from "react-redux";
+import React  from "react";
+import { BrowserRouter as Router, Route, Routes, Navigate } from "react-router-dom";
+import { Container} from "@mui/material";
+import Navbar from "./components/Navbar/Navbar";
+import Home from "./components/Home/Home";
+import {Auth} from "./components/Auth/Auth";
+import PostDetails from "./components/PostDetails/PostDetails";
 
 const App = () => {
-  const [currentId, setCurrentId] = useState(0);
-  const classes = useStyles();
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    dispatch(getPosts());
-  }, [currentId,dispatch]);
+  const user = JSON.parse(localStorage.getItem('profile'));
 
   return (
-    <Container maxWidth="lg">
-      <AppBar className={classes.appBar} position="static" color="inherit">
-      <Box display="flex" justifyContent="center" alignItems="center" flexDirection="row" width="100%">
-        <Typography className={classes.heading} variant="h2" align="center">
-          Memories
-        </Typography>
-        <img className={classes.image} src={memories} alt="memories" height="60px" />
-      </Box>
-      </AppBar>
-      <Grow in>
-        <Container>
-          <Grid container justifyContent="space-between" alignItems="stretch" spacing={4}>
-            <Grid item xs={12} sm={7}>
-              <Posts setCurrentId ={ setCurrentId} /> 
-            </Grid>
-            <Grid item xs={12} sm={4}>
-              <Form currentId = {currentId}  setCurrentId ={ setCurrentId}/>
-            </Grid>
-          </Grid>
-        </Container>
-      </Grow>
-    </Container>
+    <Router>
+      <Container maxWidth="lg">
+        <Navbar />
+        <Routes>
+        <Route path='/' element={ <Navigate to='/posts' /> } />
+          <Route path='/posts' exact element={ <Home /> } />
+          <Route path='/posts/search' exact element={ <Home /> } />
+          <Route path='/posts/:id' exact element={ <PostDetails /> } />     { /* post details path */ }
+          <Route path='/auth' exact element={ (!user ? <Auth/> : <Navigate to='/posts' />) } />
+        </Routes>
+
+      </Container>  
+    </Router>
   );
 };
 

@@ -10,7 +10,6 @@ import App from "./App";
 import theme from "./theme";
 import { ThemeProvider } from '@mui/material/styles';
 import './index.css';       // setting background with svg
-
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;  // for redux devtools
 
 // creates store with all reducers
@@ -31,7 +30,7 @@ const root = createRoot(container);
 root.render(
   <Provider store={store}>   
     <ThemeProvider theme={theme}>
-      <App />
+        <App />
     </ThemeProvider>
   </Provider>
 );

@@ -1,52 +1,42 @@
-//server/index.js
-
 import express from "express";
 import mongoose from "mongoose";
-import bodyParser from "body-parser";
 import cors from "cors";
 import postRoutes from "./routes/posts.js";
+import userRoutes from "./routes/users.js";
 import dotenv from "dotenv";
 import path from "path";
 import { fileURLToPath } from "url";
-// import logger from "./middleware/logger.js";
-// import errorHandler from "./middleware/error.js";
-// import notFound from "./middleware/notFound.js";
 
 dotenv.config();
 const app = express();
 
-
-
-// app.use(logger);
-
-// setup static folder
-const __filename = fileURLToPath(import.meta.url);
-// console.log(__filename)
-
-app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
-
 // Configure CORS
+app.use(cors({ origin: 'http://localhost:3001' }));
 
+// Setup middleware
+app.use(express.json({ limit: "30mb" }));
+app.use(express.urlencoded({ limit: "30mb", extended: true }));
+
+// Serve static files from 'public' directory
+const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
-app.use(express.static(path.join(__dirname,'public')))
-app.get("/", (req, res) =>
-  res.status(200).sendFile(path.join(__dirname, "index.html"))
-);
-app.use(bodyParser.json({ limit: "30mb", extended: true }));
-app.use(bodyParser.urlencoded({ limit: "30mb", extended: true }));
-app.use(cors());
+app.use(express.static(path.join(__dirname, 'public')));
 
+// Root route for serving the homepage
+app.get("/", (req, res) => {
+  res.status(200).sendFile(path.join(__dirname, "public", "index.html"));
+});
+
+// API routes
 app.use("/posts", postRoutes);
-// app.use(notFound);
-// app.use(errorHandler);
+app.use('/users', userRoutes);
 
+// Database connection and server startup
 console.log("Attempting to connect to MongoDB...");
 const CONNECTION_URL = process.env.CONNECTION_URL;
 const PORT = process.env.PORT || 9090;
 
-mongoose
-  .connect(CONNECTION_URL)
+mongoose.connect(CONNECTION_URL)
   .then(() => {
     console.log("Connected to MongoDB");
     app.listen(PORT, () => {
@@ -57,5 +47,3 @@ mongoose
     console.error("Connection error", error.message);
     process.exit(1);
   });
-
-  // mongoose.set('useFindAndModify', false);
