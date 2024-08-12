@@ -2,8 +2,10 @@ import { GoogleLogout } from "react-google-login";
 import { Button } from "@mui/material";
 import Icon from "./Icon";
 import useStyles from "./styles";
+import dotenv from 'dotenv'
+dotenv.config()
 
-const GOOGLE_CLIENT_ID ="113556075474-nned24vj9tggd31vuas3q7epg0vccii5.apps.googleusercontent.com";
+const GOOGLE_CLIENT_ID = process.env.GOOGLE_CLIENT_ID;
 
 function GLogout() {
   const classes = useStyles();

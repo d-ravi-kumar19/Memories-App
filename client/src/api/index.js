@@ -1,12 +1,12 @@
 // src/api/index.js
 
 import axios from "axios";
-// import dotenv from 'dotenv';
+import dotenv from 'dotenv';
 
-// dotenv.config();
+dotenv.config();
 
-// const url = process.env.API_URL || 'http://localhost:9000/posts' ;
-const API = axios.create({baseURL: 'http://localhost:9000'})
+// const url = process.env.API_URL || 'http://localhost:9000/' ;
+const API = axios.create({baseURL:process.env.API_URL })
 
 API.interceptors.request.use((req) => {
       if (localStorage.getItem('profile')) {

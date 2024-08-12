@@ -7,8 +7,10 @@ import { Button } from "@mui/material";
 import Icon from "./Icon";
 import useStyles from "./styles";
 import { useDispatch } from 'react-redux';
+import dotenv from 'dotenv'
+dotenv.config()
 
-const GOOGLE_CLIENT_ID = "113556075474-nned24vj9tggd31vuas3q7epg0vccii5.apps.googleusercontent.com";
+const GOOGLE_CLIENT_ID = process.env.GOOGLE_CLIENT_ID;
 
 function GLogin() {
       const classes = useStyles();
@@ -19,7 +21,7 @@ function GLogin() {
             console.log('Login Successful.')
             const result = res?.profileObj;
             const token = res?.tokenId;
-            // console.table(token)
+            // console.table(result,token)
             
             try {
                   dispatch({type:'AUTH', data:{ result, token}})

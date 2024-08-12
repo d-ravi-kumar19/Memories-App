@@ -5,19 +5,88 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Memory API</title>
   <style>
-        body {
-                display: flex;
-                font-family: sans-serif;
-                text-align: center;
-                justify-content: center;
-                margin: 50px;
-        }
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f4f4f4;
+      color: #333;
+    }
 
-        h1 {
-                color: #333;
-                font-size: 2em;
-        }
+    .container {
+      margin: auto;
+      padding: 50px;
+      background: rgb(216, 227, 228);
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    header {
+      text-align: center; 
+      margin-bottom: 30px;
+    }
+
+    h1 {
+      font-size: 2.5em;
+      color: #333;
+    }
+
+    h2 {
+      font-size: 2em;
+      color: #007bff;
+      border-bottom: 2px solid #007bff;
+      padding-bottom: 5px;
+      margin-bottom: 20px;
+    }
+
+    p {
+      line-height: 1.6;
+      margin: 10px 0;
+    }
+
+    a {
+      color: #007bff;
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    .swagger-docs {
+      padding: 10px;
+      border: 1px solid #b4d1d3;
+      border-radius: 5px;
+      margin-bottom: 10px;
+      background: #fafafa;
+    }
+
   </style>
+</head>
 <body>
-  <h1>Hello to Memory API</h1>
+  <div class="container">
+    <header>
+      <h1>Welcome to the Memory API</h1>
+      <p>Welcome to the Memory API documentation. This API provides functionalities for managing posts in the Memory application, including creating, retrieving, updating, and deleting posts, as well as user authentication and interaction features.</p>
+    </header>
+
+    <h2>Swagger Documentation</h2>
+    <div class="swagger-docs">
+      <p>For detailed information about the API endpoints and to interact with them, visit the <a href="/api-docs" target="_blank">Swagger UI</a>.</p>
+    </div>
+
+    <h2>Project Overview</h2>
+    <p>The Memory API is designed to handle various operations for the Memory application, such as:</p>
+    <ul>
+      <li>Managing posts including creation, updates, and deletions.</li>
+      <li>Handling user authentication and authorization.</li>
+      <li>Enabling post interactions such as liking and commenting.</li>
+    </ul>
+    <p>Swagger UI provides a user-friendly interface to explore the API's capabilities and test its endpoints directly from your browser.</p>
+
+    <h2>Server Info</h2>
+    <p><strong>Server Status:</strong> Running</p>
+    <p><strong>Port:</strong> ${process.env.PORT || 9090}</p>
+  </div>
+</body>
 </html>

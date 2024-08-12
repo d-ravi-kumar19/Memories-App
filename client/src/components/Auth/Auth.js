@@ -9,10 +9,10 @@ import { signin, signup } from '../../actions/auth.js'
 
 import {gapi} from 'gapi-script'
 import { useNavigate } from 'react-router-dom';
-// import GLogout from './GLogout'
-// import dotenv from 'dotenv'
+import dotenv from 'dotenv'
+dotenv.config()
 
-const GOOGLE_CLIENT_ID = "113556075474-nned24vj9tggd31vuas3q7epg0vccii5.apps.googleusercontent.com";
+const GOOGLE_CLIENT_ID = process.env.GOOGLE_CLIENT_ID;
 
 
 // dotenv.config()
